@@ -9,8 +9,12 @@ public class Boss : MonoBehaviour
 {
     public List<SideObj> sideObjs = new List<SideObj>(); // 가장자리 4개 부시면 보스 때릴 수 있게
 
-    public int hp;
-    public static int damage = 10;
+    public float curHp = 15;
+    public float maxHp = 15;
+
+    public Slider hpbar;
+
+    public static int damage = 5;
     public GameObject clearUI;
     public GameObject shield;
 
@@ -26,18 +30,22 @@ public class Boss : MonoBehaviour
             else
             {
                 if(shield != null)
-                {
                     Destroy(shield);
-                }
-                hp -= Player.damage;
-                if (hp <= 0)
+
+                this.curHp -= col.gameObject.GetComponent<DirectBullet>().damage;
+                hpbar.value = (float)curHp / (float)maxHp;
+                Hitted();
+
+                if (curHp <= 0)
                 {
-                    Hitted();
                     clearUI.transform.position = this.transform.position;
                     clearUI.SetActive(true);    
                     // 이거 보스 죽는 애니메이션? 이펙트? 나오고 몇 초 뒤에 켜는거로 가보자
                     Destroy(this.gameObject);
                     //여기서 게임 끝나면 뭐 뜨게 하자
+
+                    GameManager.instance.audioSource.volume = 0;
+                    PlayerAttack.canFire2 = false;
                 }
             }
             Destroy(col.gameObject);
@@ -60,4 +68,9 @@ public class Boss : MonoBehaviour
     {
         sideObjs.Remove(removeObj);
     }
+
+
+
+
+
 }

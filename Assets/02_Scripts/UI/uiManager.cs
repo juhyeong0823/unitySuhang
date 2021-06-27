@@ -37,7 +37,6 @@ public class uiManager : MonoBehaviour
 
     public Image bossPattern = null;
     public Text eventMessage = null;
-
     private WaitForSeconds sec3 = new WaitForSeconds(3f);
 
     public void On(string message, Sprite spr)
@@ -53,14 +52,11 @@ public class uiManager : MonoBehaviour
             bossPattern.sprite = spr;
         }
     }
-
     public void Off(string message, Sprite spr)
     {
-        StartCoroutine(Wait());
-        
+        StartCoroutine(OffWait());       
     }
-
-    IEnumerator Wait()
+    IEnumerator OffWait()
     {
         yield return sec3;
         bossPattern.gameObject.SetActive(false);
@@ -68,4 +64,7 @@ public class uiManager : MonoBehaviour
         bossPattern.sprite = null;
         eventMessage.text = null;
     }
+
+
+
 }

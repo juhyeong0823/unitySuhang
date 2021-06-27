@@ -14,6 +14,7 @@ public class LoadStartScene : MonoBehaviour
     {
         returnBtn.onClick.AddListener(() =>
         {
+            PlayerAttack.canFire2 = false;
             SceneManager.LoadScene("Start");
             this.gameObject.SetActive(false);
         });

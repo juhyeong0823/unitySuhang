@@ -43,6 +43,7 @@ public class I_Player : MonoBehaviour // 오브젝트 위에다가 패널띄우기
         {
             if (canOnPanel && canEnterBoss) // 그니까 보스 문에 닿았으면
             {
+                StartCoroutine(canFireSet());
                 if (havekey)
                 {
                     bossEnter.gameObject.SetActive(true);
@@ -66,11 +67,19 @@ public class I_Player : MonoBehaviour // 오브젝트 위에다가 패널띄우기
                 panel.transform.position = new Vector3(Iobj.transform.position.x, Iobj.transform.position.y + 1, Iobj.transform.position.z);
 
                 textSet();
-                
             }
         }
+    }
+
+
+    IEnumerator canFireSet()
+    {
+        PlayerAttack.canFire2 = false;
+        yield return GameManager.instance.sec1;
+        PlayerAttack.canFire2 = true;
 
     }
+
     void textSet()
     {
         if (Iobj.GetComponent<ObjData>().textCount < Iobj.GetComponent<ObjData>().dialogueLength)

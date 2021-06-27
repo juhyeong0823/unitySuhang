@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SideObj : MonoBehaviour
 {
-    public int hp;
+    public float curHp = 15;
+    public float maxHp = 15;
+
+    public Slider hpbar;
 
     public GameObject boss;
 
@@ -12,13 +16,27 @@ public class SideObj : MonoBehaviour
     {
         if (col.gameObject.CompareTag("PlayerBullet"))
         {
-            Destroy(col.gameObject);    
-            hp -= Player.damage;
-            if (hp <= 0)
+            Destroy(col.gameObject);
+            this.curHp -= col.gameObject.GetComponent<DirectBullet>().damage;
+            hpbar.value = (float)curHp / (float)maxHp;
+            Hitted();
+            if (curHp <= 0)
             {
                 boss.GetComponent<Boss>().RemoveTop(this);
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    public void Hitted()
+    {
+        this.GetComponent<SpriteRenderer>().color = Color.red;
+        StartCoroutine(wait());
+        this.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+        IEnumerator wait()
+    {
+        yield return GameManager.instance.sec1;
     }
 }

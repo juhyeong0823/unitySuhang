@@ -12,9 +12,9 @@ public class GameStart : MonoBehaviour
 
     void Start()
     {
-        startText.DOFade(0, 2).OnComplete(() =>
+        startText.DOFade(0, 1.5f).OnComplete(() =>
         {
-            startText.DOFade(1, 2).OnComplete(() =>
+            startText.DOFade(1, 1).OnComplete(() =>
             {
                 return;
             });

@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
     private float moveY;
 
     public float moveSpeed;
-
+    
     Rigidbody2D rigid;
 
     private void Start()
@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
 
     void Run()
     {
-        if(Input.GetKey(KeyCode.LeftShift) && !PlayerAttack.isShooting)
+        if(Input.GetKey(KeyCode.LeftShift) && !LightSmall.isInMaze)
         {
             moveSpeed = 10f;
         }

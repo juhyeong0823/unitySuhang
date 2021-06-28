@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PlayerMove : MonoBehaviour
@@ -8,8 +9,13 @@ public class PlayerMove : MonoBehaviour
     private float moveX;
     private float moveY;
 
+    public float stamina = 5;
+    public float maxStamina = 5;
+    private bool canRun = true;
     public float moveSpeed;
-    
+
+    public Slider staminaBar;
+
     Rigidbody2D rigid;
 
     private void Start()
@@ -36,18 +42,29 @@ public class PlayerMove : MonoBehaviour
 
     void Run()
     {
-        if(Input.GetKey(KeyCode.LeftShift) && !LightSmall.isInMaze)
+        staminaBar.value = (float)stamina / (float)maxStamina;
+        if(Input.GetKey(KeyCode.LeftShift) && !LightSmall.isInMaze && canRun)
         {
-            moveSpeed = 10f;
+            moveSpeed = 12f;
+            stamina -= Time.deltaTime;
+
+            if (stamina < 0f)
+                canRun = false;
         }
-        else if(!LightSmall.isInMaze)
+        else if(LightSmall.isInMaze)
         {
-            moveSpeed = 3f;
+            IdleMove(4f);
         }
         else
         {
-            moveSpeed = 5f;
+            IdleMove(8f);
         }
     }
 
+    void IdleMove(float speed)
+    {
+        moveSpeed = speed;
+        if (stamina < maxStamina) stamina += (1f * Time.deltaTime);
+        if (stamina > 2f) canRun = true;
+    }
 }

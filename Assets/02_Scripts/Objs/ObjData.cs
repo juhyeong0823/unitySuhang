@@ -6,7 +6,6 @@ public class ObjData : MonoBehaviour
 {
     public int textCount = 0;
 
-    private bool isTell = false; // 이미 말을 했는지
 
         
     public string[] dialogue;
@@ -23,7 +22,7 @@ public class ObjData : MonoBehaviour
         }
     }
 
-    public string SetDialogue()
+    public string GetDialogue()
     {
         return dialogue[textCount];
     }

@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class EnemyMove : MonoBehaviour
 {
-
+    public Slider hpbar;
     public LayerMask whatIsGround;
     public float sightRange; // 시야범위
     public float speed;
     private bool canChase = false;
-
     public GameObject target; // 플레이어 위치
     Vector2 backVector;
 
+
     public float curHp = 15;
+    public float maxHp = 15;
 
-
-
+ 
     private void Update()
     {
         if(!canChase)
@@ -32,36 +32,46 @@ public class EnemyMove : MonoBehaviour
         }        
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
-    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.CompareTag("PlayerBullet"))
         {
-            Debug.Log("뭐지 시발");
-            StartCoroutine(colliderOff());
-
+            hpbar.gameObject.SetActive(true);
             transform.Translate(backVector * 2f);
+
             this.curHp -= col.gameObject.GetComponent<DirectBullet>().damage;
-            if (curHp <= 0)
-            {
-                Destroy(this.gameObject);
-                GameManager.instance.BiggerExplosionPlay(this.gameObject.transform);
-                GameManager.instance.kill++;
-            }
+            hpbar.value = (float)curHp / (float)maxHp;
+
+            if (curHp <= 0) Die();
+
+            CancelInvoke("HpbarOff");
+            Invoke("HpbarOff", 1f);
         }
     }
 
-   
 
-    IEnumerator colliderOff()
+    private void OnTriggerExit2D(Collider2D col)
     {
-        this.GetComponent<CircleCollider2D>().enabled = false;
-        yield return GameManager.instance.sec03;
-        this.GetComponent<CircleCollider2D>().enabled = true;
+        if(col.gameObject.CompareTag("TileMaps"))
+        {
+            Destroy(this.gameObject);
+            GameManager.instance.BiggerExplosionPlay(this.transform);
+        }
     }
+
+    void Die()
+    {
+        Destroy(this.gameObject);
+        
+        GameManager.instance.BiggerExplosionPlay(this.gameObject.transform);
+    }
+
+
+    void HpbarOff()
+    {
+        hpbar.gameObject.SetActive(false);
+    }
+
+
 }

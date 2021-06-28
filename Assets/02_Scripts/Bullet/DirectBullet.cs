@@ -17,7 +17,7 @@ public class DirectBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") ||  collision.gameObject.CompareTag("Boss"))
         {
-            Destroy(this.gameObject,0.1f);
+            Destroy(this.gameObject);
             GameManager.instance.ExplosionPlay(this.gameObject.transform);
         }
     }

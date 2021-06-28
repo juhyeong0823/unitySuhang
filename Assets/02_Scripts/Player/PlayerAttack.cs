@@ -30,8 +30,6 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField]
     private GameObject bullet;
-    [SerializeField]
-    private GameObject snipeBullet;
 
     private bool canFire = true;
     public static bool canFire2 = true;
@@ -43,7 +41,8 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         state = AttackState.normal;
-        items = playerItems.GetComponent<PlayerItems>();
+        PlayerAttack.canFire2 = true;
+        //items = playerItems.GetComponent<PlayerItems>();
     }
 
     void Update()

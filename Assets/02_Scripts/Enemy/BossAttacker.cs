@@ -74,7 +74,7 @@ public class BossAttacker : MonoBehaviour
                 {
                     if (bullets1.Count <= 0)
                     {
-                        obj = obj = Instantiate(weapons[0], transform.position,Quaternion.identity);
+                        obj = Instantiate(weapons[0], transform.position,Quaternion.identity);
                         bullets1.Enqueue(obj);
                     }
                     obj = bullets1.Dequeue();

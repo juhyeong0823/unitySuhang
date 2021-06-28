@@ -16,6 +16,7 @@ public class LightSmall : MonoBehaviour
                 bigLight.SetActive(false);
                 smallLight.SetActive(true);
             isInMaze = true;
+            PlayerAttack.canFire2 = false;
         }
     }
 
@@ -26,6 +27,8 @@ public class LightSmall : MonoBehaviour
             bigLight.SetActive(true);
             smallLight.SetActive(false);
             isInMaze = false;
+            PlayerAttack.canFire2 = true;
+
         }
     }
 }

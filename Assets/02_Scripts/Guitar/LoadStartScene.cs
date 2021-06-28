@@ -17,6 +17,8 @@ public class LoadStartScene : MonoBehaviour
             PlayerAttack.canFire2 = false;
             SceneManager.LoadScene("Start");
             this.gameObject.SetActive(false);
+            Time.timeScale = 1;
+
         });
     }
 

@@ -3,13 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-
-
-
 public class I_Player : MonoBehaviour // 오브젝트 위에다가 패널띄우기
 {
-     PlayerItems items;
-    public GameObject playerItems;
     private bool canOnPanel = false;
     private bool canEnterBoss = false;
     public bool havekey = false;
@@ -18,17 +13,17 @@ public class I_Player : MonoBehaviour // 오브젝트 위에다가 패널띄우기
     private GameObject panel;
     private GameObject Iobj;
     public GameObject bossEnter;
-
+    public GameObject agro;
 
     [SerializeField]
     private Text textInPanel;
+    public Image pressE;
 
     private string textString = string.Empty;
 
     private void Start()
     {
         textString = string.Empty;
-        items = playerItems.GetComponent<PlayerItems>();
     }
 
     private void Update()
@@ -43,28 +38,31 @@ public class I_Player : MonoBehaviour // 오브젝트 위에다가 패널띄우기
         {
             if (canOnPanel && canEnterBoss) // 그니까 보스 문에 닿았으면
             {
-                StartCoroutine(canFireSet());
+
                 if (havekey)
                 {
                     bossEnter.gameObject.SetActive(true);
                 }
                 else
                 {
-
                     textString = "열쇠가 필요할 것 같다.";
                     textInPanel.text = string.Empty;
 
                     textInPanel.DOText(textString, 1.5f);
                     panel.SetActive(true);
                     panel.transform.position = new Vector3(Iobj.transform.position.x, Iobj.transform.position.y + 1, Iobj.transform.position.z);
-                    StartCoroutine(panelOff2());
+                    StartCoroutine(panelOff());
                     canOnPanel = false;
                 }
             }
             else if (canOnPanel) // 그냥 Iobj랑 닿아서 이제 대화창에 스트링이 들어가 있으면
             {
+                if(Iobj.name == "NPC")
+                {
+                    agro.SetActive(false);
+                }
                 panel.SetActive(true);
-                panel.transform.position = new Vector3(Iobj.transform.position.x, Iobj.transform.position.y + 1, Iobj.transform.position.z);
+                panel.transform.position = new Vector3(Iobj.transform.position.x, Iobj.transform.position.y + 2, Iobj.transform.position.z);
 
                 textSet();
             }
@@ -72,23 +70,22 @@ public class I_Player : MonoBehaviour // 오브젝트 위에다가 패널띄우기
     }
 
 
-    IEnumerator canFireSet()
-    {
-        PlayerAttack.canFire2 = false;
-        yield return GameManager.instance.sec1;
-        PlayerAttack.canFire2 = true;
 
-    }
 
     void textSet()
     {
         if (Iobj.GetComponent<ObjData>().textCount < Iobj.GetComponent<ObjData>().dialogueLength)
         {
-            textString = Iobj.GetComponent<ObjData>().SetDialogue();
-            textInPanel.text = string.Empty; // 두텍스트 쓰기전엔 초기화 해줘야 한대연
+            textString = Iobj.GetComponent<ObjData>().GetDialogue();
 
-            textInPanel.DOText(textString, 1.5f);
-            Iobj.GetComponent<ObjData>().textCountSet();
+            textInPanel.text = string.Empty; // 두텍스트 쓰기전엔 초기화 해줘야 한대연
+            canOnPanel = false;
+            textInPanel.DOText(textString, 1.5f).OnComplete(() =>
+            {
+                Iobj.GetComponent<ObjData>().textCountSet();
+                canOnPanel = true;
+
+            });
         }
         else
         {
@@ -107,6 +104,7 @@ public class I_Player : MonoBehaviour // 오브젝트 위에다가 패널띄우기
 
             Iobj = null;
             textString = string.Empty;
+
         }
         else if (col.gameObject.CompareTag("BossDoor"))
         {
@@ -114,21 +112,28 @@ public class I_Player : MonoBehaviour // 오브젝트 위에다가 패널띄우기
             canOnPanel = false;
             canEnterBoss = false;
         }
+        pressE.gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Iobj"))
         {
+            Iobj = col.gameObject;
             canOnPanel = true;
 
-            Iobj = col.gameObject;
+            pressE.transform.position = new Vector2(Iobj.transform.position.x -1f, Iobj.transform.position.y +0.5f);
+            pressE.gameObject.SetActive(true);
+
         }
         else if (col.gameObject.CompareTag("BossDoor"))
         {
             canOnPanel = true;
             canEnterBoss = true;
             Iobj = col.gameObject;
+
+            pressE.transform.position = new Vector2(Iobj.transform.position.x - 0.5f, Iobj.transform.position.y);
+            pressE.gameObject.SetActive(true);
         }
     }
 
@@ -139,32 +144,27 @@ public class I_Player : MonoBehaviour // 오브젝트 위에다가 패널띄우기
             havekey = true;
             // 보스맵 입구를 열어줘야 함
         }
-        else if(col.gameObject.CompareTag("Items"))
-        {
-            int num = col.gameObject.GetComponent<ItemNumber>().num;
+        //else if(col.gameObject.CompareTag("Items"))
+        //{
+        //    int num = col.gameObject.GetComponent<ItemNumber>().num;
 
-            if (num == 1)
-            {
-                items.item1.Add(col.gameObject);
-            }
-            else if (num == 2)
-            {
-                items.item2.Add(col.gameObject);
-            }
-        }
+        //    if (num == 1)
+        //    {
+        //        items.item1.Add(col.gameObject);
+        //    }
+        //    else if (num == 2)
+        //    {
+        //        items.item2.Add(col.gameObject);
+        //    }
+        //}
     }
 
 
 
     IEnumerator panelOff()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return GameManager.instance.sec2;
         panel.SetActive(false);
     }
 
-    IEnumerator panelOff2()
-    {
-        yield return new WaitForSeconds(2f);
-        panel.SetActive(false);
-    }
 }

@@ -30,28 +30,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region
     public WaitForSeconds sec1 = new WaitForSeconds(1f);
     public WaitForSeconds sec2 = new WaitForSeconds(2f);
+    public WaitForSeconds sec5 = new WaitForSeconds(5f);
     
     public WaitForSeconds sec01 = new WaitForSeconds(0.1f);
     public WaitForSeconds sec02 = new WaitForSeconds(0.2f);
     public WaitForSeconds sec03 = new WaitForSeconds(0.3f);
     public WaitForSeconds sec04 = new WaitForSeconds(0.4f);
     public WaitForSeconds sec05 = new WaitForSeconds(0.5f);
-
+    #endregion
 
     public AudioSource audioSource;
     public GameObject explosionEffect;
     public GameObject explosionEffectBigger;
 
     [Header("클리어")]
-    public int kill;    // 잡은 몹의 수
-    public int playtime;//플레이 시간 보여주기  
-    public float movedDistance;    //이동거리
+    public GameObject cvsClear;
+    public Text playTimeText;
+
+    public float playtime;//플레이 시간 보여주기  
     public string rank; // 등급
 
     public GameObject cvsMenu;
-    public GameObject cvsClear;
+
 
     private bool isCvsMenuOn = false;
 
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        playtime += Time.deltaTime;
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(!isCvsMenuOn)

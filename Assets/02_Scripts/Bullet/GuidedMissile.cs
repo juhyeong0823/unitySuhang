@@ -18,6 +18,7 @@ public class GuidedMissile : MonoBehaviour
     void Update()
     {
         Destroy(this.gameObject, 6f);
+        if(target!= null)
         transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position, speed * Time.deltaTime);
     }
 

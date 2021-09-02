@@ -15,7 +15,7 @@ public class ObjData : MonoBehaviour
 
     private void Start()
     {
-        dialogueLength = dialogue.Length;
+        dialogueLength = dialogue.Length; // 퍼블릭으로 string 배열 선언해서 만들고, 그 길이를 가져오는거임
         if (dialogue == null)
         {
             Debug.LogError(this.gameObject.name + "이 친구 dialogue 설정을 안했어");

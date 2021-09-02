@@ -38,7 +38,8 @@ public class EnemyMove : MonoBehaviour
         if(col.gameObject.CompareTag("PlayerBullet"))
         {
             hpbar.gameObject.SetActive(true);
-            transform.Translate(backVector * 2f);
+            
+            transform.Translate(backVector * 5f);
 
             this.curHp -= col.gameObject.GetComponent<DirectBullet>().damage;
             hpbar.value = (float)curHp / (float)maxHp;
@@ -55,8 +56,7 @@ public class EnemyMove : MonoBehaviour
     {
         if(col.gameObject.CompareTag("TileMaps"))
         {
-            Destroy(this.gameObject);
-            GameManager.instance.BiggerExplosionPlay(this.transform);
+            Die();
         }
     }
 

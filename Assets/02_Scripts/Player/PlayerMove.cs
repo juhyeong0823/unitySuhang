@@ -14,8 +14,11 @@ public class PlayerMove : MonoBehaviour
     private bool canRun = true;
     public float moveSpeed;
 
+<<<<<<< HEAD
     public Slider staminaBar;
 
+=======
+>>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
     Rigidbody2D rigid;
 
     private void Start()
@@ -42,8 +45,12 @@ public class PlayerMove : MonoBehaviour
 
     void Run()
     {
+<<<<<<< HEAD
         staminaBar.value = (float)stamina / (float)maxStamina;
         if(Input.GetKey(KeyCode.LeftShift) && !LightSmall.isInMaze && canRun)
+=======
+        if(Input.GetKey(KeyCode.LeftShift) && !PlayerAttack.isShooting)
+>>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
         {
             moveSpeed = 12f;
             stamina -= Time.deltaTime;

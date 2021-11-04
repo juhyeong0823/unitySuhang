@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3151054540312826610}
   m_Layer: 0
   m_Name: GuideMissileSpawn
-  m_TagString: EnemyBullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,8 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4,
-    type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -113,9 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a196a0e744c472c40adc3ed06d036276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHp: 15
-  maxHp: 15
-  hpbar: {fileID: 0}
+  hp: 10
   boss: {fileID: 0}
 --- !u!61 &2602746941105054844
 BoxCollider2D:

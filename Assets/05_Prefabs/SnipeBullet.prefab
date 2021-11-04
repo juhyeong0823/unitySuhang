@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8908948835492527949}
   - component: {fileID: 8735793979710681795}
   m_Layer: 0
-  m_Name: bullet
+  m_Name: SnipeBullet
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5786235481de2ab498e7ff0f78b90323, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,12 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5590a8c7fefb44db3c28cd7918f291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  speed: 15
-  damage: 3
-=======
-  speed: 10
->>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
+  speed: 20
 --- !u!58 &8735793979710681795
 CircleCollider2D:
   m_ObjectHideFlags: 0

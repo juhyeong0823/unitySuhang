@@ -4,5 +4,18 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes: []
+=======
+  m_Scenes:
+  - enabled: 1
+    path: Assets/03_Scenes/Start.unity
+    guid: 9f247b8fc1c4d9a4fb2c9cd913af57c3
+  - enabled: 1
+    path: Assets/03_Scenes/Loading.unity
+    guid: 54744e0f1791eb54bb70b3c0e0e7a44b
+  - enabled: 1
+    path: Assets/03_Scenes/Stage1.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
+>>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)

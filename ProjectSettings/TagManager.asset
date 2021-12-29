@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+<<<<<<< HEAD
+  - Shootable
+=======
+  - FxTemporaire
+  - Door
+  - Ground
+  - Block
+  - BossDoor
+  - PlayerBullet
+  - EnemyBullet
+  - Iobj
+  - Items
+  - Wall
+>>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
   layers:
   - Default
   - TransparentFX
@@ -11,11 +25,14 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
   - 
   - 
   - 
   - 
-  - 
+  - Lighting
+  - Ground
+  - Postprocessing
   - 
   - 
   - 
@@ -38,6 +55,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fire
+    uniqueID: 3804908061
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+<<<<<<< HEAD
+=======
+  - name: col
+    uniqueID: 3730849463
+    locked: 0
+>>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)

@@ -10,7 +10,6 @@ public class Boss : MonoBehaviour
 
     public List<SideObj> sideObjs = new List<SideObj>(); // °¡ÀåÀÚ¸® 4°³ ºÎ½Ã¸é º¸½º ¶§¸± ¼ö ÀÖ°Ô
 
-<<<<<<< HEAD
     public float curHp = 15;
     public float maxHp = 15;
 
@@ -18,10 +17,6 @@ public class Boss : MonoBehaviour
 
     public GameObject player;
     public static int damage = 5;
-=======
-    public int hp;
-    public static int damage = 10;
->>>>>>> parent of bb77aac (í•˜ ì œê¸¸ ë˜ëŠ”ì¼ì´ í•˜ë‚˜ë„ ì—†ì–´..)
     public GameObject clearUI;
     public GameObject shield;
 
@@ -35,7 +30,6 @@ public class Boss : MonoBehaviour
             }
             else
             {
-<<<<<<< HEAD
                 if(shield != null)  Destroy(shield);
 
                 hpbar.gameObject.SetActive(true);
@@ -47,22 +41,6 @@ public class Boss : MonoBehaviour
                 Invoke("HpbarOff", 1f);
 
                 if (curHp <= 0) GameOver();
-=======
-                if(shield != null)
-                {
-                    Destroy(shield);
-                }
-                hp -= Player.damage;
-                if (hp <= 0)
-                {
-                    Hitted();
-                    clearUI.transform.position = this.transform.position;
-                    clearUI.SetActive(true);    
-                    // ÀÌ°Å º¸½º Á×´Â ¾Ö´Ï¸ŞÀÌ¼Ç? ÀÌÆåÆ®? ³ª¿À°í ¸î ÃÊ µÚ¿¡ ÄÑ´Â°Å·Î °¡º¸ÀÚ
-                    Destroy(this.gameObject);
-                    //¿©±â¼­ °ÔÀÓ ³¡³ª¸é ¹¹ ¶ß°Ô ÇÏÀÚ
-                }
->>>>>>> parent of bb77aac (í•˜ ì œê¸¸ ë˜ëŠ”ì¼ì´ í•˜ë‚˜ë„ ì—†ì–´..)
             }
             Destroy(col.gameObject);
         }
@@ -78,7 +56,6 @@ public class Boss : MonoBehaviour
     {
         sideObjs.Remove(removeObj);
     }
-<<<<<<< HEAD
 
     void GameOver()
     {
@@ -94,6 +71,4 @@ public class Boss : MonoBehaviour
         PlayerAttack.canFire2 = false;
         GameManager.instance.playTimeText.text = string.Format("Å¬¸®¾î ½Ã°£ : {0}s ", (int)GameManager.instance.playtime);
     }
-=======
->>>>>>> parent of bb77aac (í•˜ ì œê¸¸ ë˜ëŠ”ì¼ì´ í•˜ë‚˜ë„ ì—†ì–´..)
 }

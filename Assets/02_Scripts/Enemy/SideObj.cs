@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SideObj : MonoBehaviour
 {
-    public int hp;
+    public float curHp = 15;
+    public float maxHp = 15;
+
+    public Slider hpbar;
 
     public GameObject boss;
 
@@ -13,7 +17,6 @@ public class SideObj : MonoBehaviour
     {
         if (col.gameObject.CompareTag("PlayerBullet"))
         {
-<<<<<<< HEAD
 
             hpbar.gameObject.SetActive(true);
             Destroy(col.gameObject);
@@ -22,11 +25,6 @@ public class SideObj : MonoBehaviour
             hpbar.value = (float)curHp / (float)maxHp;
 
             if (curHp <= 0)
-=======
-            Destroy(col.gameObject);    
-            hp -= Player.damage;
-            if (hp <= 0)
->>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
             {
                 boss.GetComponent<Boss>().RemoveTop(this);
                 Destroy(this.gameObject);
@@ -38,13 +36,10 @@ public class SideObj : MonoBehaviour
             Invoke("HpbarOff", 1f);
         }
     }
-<<<<<<< HEAD
 
     void HpbarOff()
     { 
         hpbar.gameObject.SetActive(false);
     }
 
-=======
->>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
 }

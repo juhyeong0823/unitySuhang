@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class EnemyMove : MonoBehaviour
 {
     public Slider hpbar;
     public LayerMask whatIsGround;
-<<<<<<< HEAD
     public float sightRange; // �þ߹���
     public float speed;
     private bool canChase = false;
@@ -20,29 +19,24 @@ public class EnemyMove : MonoBehaviour
 
  
     private void Update()
-=======
-
-    private GameObject target; // �÷��̾� ��ġ
-    private bool canChase = false;
-
-    private void Start()
->>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
-    {
-
-        target = GameObject.Find("Player");
-    }
-
-<<<<<<< HEAD
-=======
-    private void Update()
     {
         if(!canChase)
-        canChase = Physics2D.OverlapCircle(transform.position, 3f, whatIsGround);
->>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
-
-        if(canChase)
         {
-<<<<<<< HEAD
+            canChase = Physics2D.OverlapCircle(transform.position, sightRange, whatIsGround);
+        }
+        if (canChase)
+        {
+            backVector = -(target.transform.position - transform.position).normalized;
+
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        }        
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.CompareTag("PlayerBullet"))
+        {
             hpbar.gameObject.SetActive(true);
             
             transform.Translate(backVector * 5f);
@@ -63,12 +57,9 @@ public class EnemyMove : MonoBehaviour
         if(col.gameObject.CompareTag("TileMaps"))
         {
             Die();
-=======
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 5 * Time.deltaTime);
->>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
         }
+    }
 
-<<<<<<< HEAD
     void Die()
     {
         Destroy(this.gameObject);
@@ -80,9 +71,6 @@ public class EnemyMove : MonoBehaviour
     void HpbarOff()
     {
         hpbar.gameObject.SetActive(false);
-=======
-        
->>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
     }
 
 

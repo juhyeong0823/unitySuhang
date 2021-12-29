@@ -3,7 +3,6 @@
 --- !u!11 &1
 AudioManager:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
   m_Volume: 1
   Rolloff Scale: 1
   Doppler Factor: 1
@@ -14,8 +13,3 @@ AudioManager:
   m_RealVoiceCount: 32
   m_SpatializerPlugin: 
   m_DisableAudio: 0
-<<<<<<< HEAD
-=======
-  m_VirtualizeEffects: 1
-  m_RequestedDSPBufferSize: 0
->>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)

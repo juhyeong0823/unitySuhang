@@ -1,4 +1,5 @@
 
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
@@ -29,7 +30,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
     #region
     public WaitForSeconds sec1 = new WaitForSeconds(1f);
     public WaitForSeconds sec2 = new WaitForSeconds(2f);
@@ -52,17 +52,12 @@ public class GameManager : MonoBehaviour
 
     public float playtime;//ÇÃ·¹ÀÌ ½Ã°£ º¸¿©ÁÖ±â  
     public string rank; // µî±Ş
-=======
-
-    //cvsClear¿¡ ³ÖÀ» °ÍµéÀÎµ¥ ÀÌÁ¦ ÀÌ°Å¸¦ Àü´ŞÇØÁÖ¸é µÊ
-    //ÇÃ·¹ÀÌ ½Ã°£ º¸¿©ÁÖ±â  
-    //ÀÌµ¿°Å¸®
-    //¼Ò¸ğÇÑ ÅºÃ¢ ¼ö
-    //ÀÌµ¿ÇÑ ¹æ °Â¼ö
-    //³²Àº hp
->>>>>>> parent of bb77aac (í•˜ ì œê¸¸ ë˜ëŠ”ì¼ì´ í•˜ë‚˜ë„ ì—†ì–´..)
 
     public GameObject cvsMenu;
+
+
+    private bool isCvsMenuOn = false;
+
 
 
     void Update()
@@ -70,8 +65,42 @@ public class GameManager : MonoBehaviour
         playtime += Time.deltaTime;
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            cvsMenu.GetComponent<Canvas>().enabled = true;
-            Time.timeScale = 0;
+            if(!isCvsMenuOn)
+            {
+                cvsMenu.GetComponent<Canvas>().enabled = true;
+                Time.timeScale = 0;
+                    isCvsMenuOn = true;
+                PlayerAttack.canFire2 = false;
+            }
+            else
+            {
+                cvsMenu.GetComponent<Canvas>().enabled = false;
+                Time.timeScale = 1;
+                isCvsMenuOn = false;
+                PlayerAttack.canFire2 = true;
+
+            }
         }
+    }
+
+    public void ExplosionPlay(Transform instantiatePos)
+    {
+        Instantiate(explosionEffect, instantiatePos.position, Quaternion.identity);
+    }
+
+    public void BiggerExplosionPlay(Transform instantiatePos)
+    {
+        Instantiate(explosionEffectBigger, instantiatePos.position, Quaternion.identity);
+    }
+
+    public void ShootSoundPlay(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
+    public void SetMusicVolume(float volumevalue)
+    {
+        audioSource.volume = volumevalue;
     }
 }

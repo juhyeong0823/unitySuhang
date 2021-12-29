@@ -38,10 +38,7 @@ public class I_Player : MonoBehaviour // ¿ÀºêÁ§Æ® À§¿¡´Ù°¡ ÆĞ³Î¶ç¿ì±â
         {
             if (canOnPanel && canEnterBoss) // ±×´Ï±î º¸½º ¹®¿¡ ´ê¾ÒÀ¸¸é
             {
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of bb77aac (í•˜ ì œê¸¸ ë˜ëŠ”ì¼ì´ í•˜ë‚˜ë„ ì—†ì–´..)
                 if (havekey)
                 {
                     bossEnter.gameObject.SetActive(true);
@@ -68,19 +65,13 @@ public class I_Player : MonoBehaviour // ¿ÀºêÁ§Æ® À§¿¡´Ù°¡ ÆĞ³Î¶ç¿ì±â
                 panel.transform.position = new Vector3(Iobj.transform.position.x, Iobj.transform.position.y + 2, Iobj.transform.position.z);
 
                 textSet();
-                
             }
         }
-<<<<<<< HEAD
     }
 
 
 
 
-=======
-
-    }
->>>>>>> parent of bb77aac (í•˜ ì œê¸¸ ë˜ëŠ”ì¼ì´ í•˜ë‚˜ë„ ì—†ì–´..)
     void textSet()
     {
         if (Iobj.GetComponent<ObjData>().textCount < Iobj.GetComponent<ObjData>().dialogueLength)

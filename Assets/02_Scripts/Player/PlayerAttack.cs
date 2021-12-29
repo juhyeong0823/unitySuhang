@@ -10,7 +10,6 @@ public class PlayerAttack : MonoBehaviour
     {
         normal,
         shotgun,
-        snipe
     };
 
     AttackState state;
@@ -21,11 +20,10 @@ public class PlayerAttack : MonoBehaviour
     public GameObject playerItems;
     public GameObject crosshair;
     public Transform bulletStartpos;
+    public AudioClip shootSound;
 
 
-    private WaitForSeconds zero1 = new WaitForSeconds(0.1f);
-    private WaitForSeconds _1 = new WaitForSeconds(1f);
-    private WaitForSeconds _2 = new WaitForSeconds(2f);
+
 
     [SerializeField]
     private Transform shooter; // gunShooter의 로테이트 참조하기
@@ -34,8 +32,7 @@ public class PlayerAttack : MonoBehaviour
     private GameObject bullet;
 
     private bool canFire = true;
-    public static bool isShooting;
-
+    public static bool canFire2 = true;
     public GameObject bulletPool;
 
     public string leftClick = "Fire1";
@@ -58,18 +55,14 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetButton(leftClick) && canFire)
+        if (Input.GetButtonDown(leftClick) && canFire && canFire2)
         {
-            isShooting = true;
             crosshair.SetActive(true);
 
             if (state == AttackState.normal) Fire1();
             else if (state == AttackState.shotgun) Fire2();
-            else if (state == AttackState.snipe) Fire3();
-        }
-        else if(Input.GetButtonUp(leftClick))
-        {
-            isShooting = false;
+
+            GameManager.instance.ShootSoundPlay(shootSound);
         }
 
         #region
@@ -102,7 +95,6 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) state = AttackState.normal;
         else if (Input.GetKeyDown(KeyCode.Alpha2)) state = AttackState.shotgun;
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) state = AttackState.snipe;
     }
 
     void Fire1()
@@ -110,6 +102,8 @@ public class PlayerAttack : MonoBehaviour
         GameObject obj = Instantiate(bullet, bulletStartpos.position, shooter.rotation);
         obj.transform.parent = bulletPool.transform;
         canFire = false;
+
+        GameManager.instance.ShootSoundPlay(shootSound);
         StartCoroutine(Wait1());
     }
 
@@ -127,34 +121,16 @@ public class PlayerAttack : MonoBehaviour
         StartCoroutine(Wait2());
     }
 
-    void Fire3()
-    {
-        GameObject obj = Instantiate(bullet, bulletStartpos.position, shooter.rotation);
-        obj.transform.parent = bulletPool.transform;
-
-        canFire = false;
-        StartCoroutine(Wait3());
-    }
-
-
     IEnumerator Wait1()
     {
-        yield return zero1;
+        yield return GameManager.instance.sec02;
         canFire = true;
     }
 
     IEnumerator Wait2()
     {
-        yield return _1;
+        yield return GameManager.instance.sec1;
         canFire = true;
     }
-
-    IEnumerator Wait3()
-    {
-        yield return _2;
-        canFire = true;
-    }
-
-
 
 }

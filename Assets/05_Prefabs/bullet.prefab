@@ -73,7 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,12 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5590a8c7fefb44db3c28cd7918f291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   speed: 15
   damage: 3
-=======
-  speed: 10
->>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
 --- !u!58 &8735793979710681795
 CircleCollider2D:
   m_ObjectHideFlags: 0

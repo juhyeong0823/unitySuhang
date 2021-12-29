@@ -19,7 +19,7 @@ public class DirectShoot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("Wall"))
+        if (col.gameObject.CompareTag("Player"))
         {
             if (num == 0)
             {
@@ -27,7 +27,17 @@ public class DirectShoot : MonoBehaviour
             }
 
             this.gameObject.SetActive(false);
+            GameManager.instance.ExplosionPlay(this.gameObject.transform);
 
         }
+        else if(col.gameObject.CompareTag("Wall"))
+        {
+            if (num == 0)
+            {
+                BossAttacker.bullets1.Enqueue(this.gameObject);
+            }
+            this.gameObject.SetActive(false);
+        }
+
     }
 }

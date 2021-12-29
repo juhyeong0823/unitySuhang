@@ -3,9 +3,4 @@
 --- !u!1386491679 &1
 PresetManager:
   m_ObjectHideFlags: 0
-<<<<<<< HEAD
   m_DefaultList: []
-=======
-  serializedVersion: 2
-  m_DefaultPresets: {}
->>>>>>> parent of bb77aac (하 제길 되는일이 하나도 없어..)
